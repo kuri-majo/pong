@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8ji1j65nwsuy"]
+[gd_scene load_steps=9 format=3 uid="uid://b8ji1j65nwsuy"]
 
 [ext_resource type="PackedScene" uid="uid://xrpqt6mi21dn" path="res://scenes/wall.tscn" id="1_xihky"]
 [ext_resource type="Texture2D" uid="uid://dla4w6h3xcp4j" path="res://assets/wall.png" id="2_ypns4"]
 [ext_resource type="PackedScene" uid="uid://cirojjxcatqt6" path="res://scenes/paddles/paddle.tscn" id="3_xa0gr"]
-[ext_resource type="Script" path="res://scenes/paddles/paddle.gd" id="4_6b7ar"]
+[ext_resource type="Script" path="res://scenes/paddles/player_paddle.gd" id="4_ns0vb"]
 [ext_resource type="Texture2D" uid="uid://r1mfig1d2yet" path="res://assets/paddle.png" id="4_pbthd"]
+[ext_resource type="Script" path="res://scenes/paddles/enemy_paddle.gd" id="6_enock"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qr0q"]
 size = Vector2(32, 256)
@@ -43,15 +44,28 @@ shape = SubResource("RectangleShape2D_3qr0q")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.4, 0.4)
 
-[node name="paddle" parent="." instance=ExtResource("3_xa0gr")]
+[node name="player_paddle" parent="." instance=ExtResource("3_xa0gr")]
 position = Vector2(-1000, 0)
 gravity_scale = 0.0
-script = ExtResource("4_6b7ar")
+script = ExtResource("4_ns0vb")
 
-[node name="Sprite2D" type="Sprite2D" parent="paddle"]
+[node name="Sprite2D" type="Sprite2D" parent="player_paddle"]
 position = Vector2(-103, 15)
 texture = ExtResource("4_pbthd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_paddle"]
+position = Vector2(-103, 15)
+shape = SubResource("RectangleShape2D_quwtw")
+
+[node name="enemy_paddle" parent="." instance=ExtResource("3_xa0gr")]
+position = Vector2(1000, 0)
+gravity_scale = 0.0
+script = ExtResource("6_enock")
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy_paddle"]
+position = Vector2(-103, 15)
+texture = ExtResource("4_pbthd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_paddle"]
 position = Vector2(-103, 15)
 shape = SubResource("RectangleShape2D_quwtw")
