@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8ji1j65nwsuy"]
+
+[ext_resource type="PackedScene" uid="uid://xrpqt6mi21dn" path="res://scenes/wall.tscn" id="1_xihky"]
+[ext_resource type="Texture2D" uid="uid://dla4w6h3xcp4j" path="res://assets/wall.png" id="2_ypns4"]
+[ext_resource type="PackedScene" uid="uid://cirojjxcatqt6" path="res://scenes/paddles/paddle.tscn" id="3_xa0gr"]
+[ext_resource type="Texture2D" uid="uid://r1mfig1d2yet" path="res://assets/paddle.png" id="4_pbthd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qr0q"]
+size = Vector2(32, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quwtw"]
+size = Vector2(32, 256)
+
+[node name="main" type="Node2D"]
+
+[node name="walls" type="Node" parent="."]
+
+[node name="top_wall" parent="walls" instance=ExtResource("1_xihky")]
+position = Vector2(10, -600)
+rotation = 1.5708
+scale = Vector2(1, 9)
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/top_wall"]
+texture = ExtResource("2_ypns4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/top_wall"]
+position = Vector2(10, -600)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_3qr0q")
+
+[node name="bottom_wall" parent="walls" instance=ExtResource("1_xihky")]
+position = Vector2(10, 600)
+rotation = 1.5708
+scale = Vector2(1, 9)
+
+[node name="Sprite2D" type="Sprite2D" parent="walls/bottom_wall"]
+texture = ExtResource("2_ypns4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom_wall"]
+shape = SubResource("RectangleShape2D_3qr0q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.4, 0.4)
+
+[node name="paddle" parent="." instance=ExtResource("3_xa0gr")]
+
+[node name="Sprite2D" type="Sprite2D" parent="paddle"]
+position = Vector2(-103, 15)
+texture = ExtResource("4_pbthd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle"]
+position = Vector2(-103, 15)
+shape = SubResource("RectangleShape2D_quwtw")
