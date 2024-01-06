@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://cmsbr0sd3n8ta"]
+
+[node name="out_zone" type="Area2D"]
+scale = Vector2(1.4, 70)
