@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cirojjxcatqt6"]
+
+[ext_resource type="Texture2D" uid="uid://dla4w6h3xcp4j" path="res://assets/wall.png" id="1_ih762"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c152t"]
+size = Vector2(32, 256)
+
+[node name="paddle" type="RigidBody2D"]
+lock_rotation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("1_ih762")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.8, 1.8)
+shape = SubResource("RectangleShape2D_c152t")

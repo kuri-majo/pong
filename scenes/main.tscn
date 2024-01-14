@@ -1,34 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8ji1j65nwsuy"]
+[gd_scene load_steps=9 format=3 uid="uid://b8ji1j65nwsuy"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_bson1"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_bson1"]
 [ext_resource type="PackedScene" uid="uid://xrpqt6mi21dn" path="res://scenes/wall.tscn" id="1_xihky"]
-[ext_resource type="Texture2D" uid="uid://dla4w6h3xcp4j" path="res://assets/wall.png" id="2_ypns4"]
-[ext_resource type="PackedScene" uid="uid://cirojjxcatqt6" path="res://scenes/paddles/paddle.tscn" id="3_xa0gr"]
-[ext_resource type="Script" path="res://scenes/paddles/player_paddle.gd" id="4_ns0vb"]
-[ext_resource type="Texture2D" uid="uid://r1mfig1d2yet" path="res://assets/paddle.png" id="4_pbthd"]
-[ext_resource type="Script" path="res://scenes/paddles/enemy_paddle.gd" id="6_enock"]
+[ext_resource type="PackedScene" uid="uid://cirojjxcatqt6" path="res://scenes/paddle.tscn" id="3_xa0gr"]
+[ext_resource type="Script" path="res://scripts/paddles/player_paddle.gd" id="4_ns0vb"]
+[ext_resource type="Script" path="res://scripts/paddles/enemy_paddle.gd" id="6_enock"]
 [ext_resource type="PackedScene" uid="uid://1a7usic1r6rb" path="res://scenes/ball.tscn" id="7_c8wfy"]
-[ext_resource type="Script" path="res://scenes/ball.gd" id="8_2bsxx"]
-[ext_resource type="Texture2D" uid="uid://ce7qu631qtbve" path="res://assets/ball.png" id="8_p0n6p"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="8_2bsxx"]
 [ext_resource type="PackedScene" uid="uid://cmsbr0sd3n8ta" path="res://scenes/out_zone.tscn" id="10_d3o00"]
-[ext_resource type="Script" path="res://scenes/out_zone.gd" id="11_u4vgi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qr0q"]
-size = Vector2(256, 3.55556)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngbr5"]
-size = Vector2(32, 256)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_quwtw"]
-size = Vector2(32, 256)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8227c"]
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0were"]
-size = Vector2(31.4286, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1t5w"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_bson1")
@@ -36,87 +15,38 @@ script = ExtResource("1_bson1")
 [node name="walls" type="Node" parent="."]
 
 [node name="top_wall" parent="walls" instance=ExtResource("1_xihky")]
-position = Vector2(0, -600)
+position = Vector2(0, -1050)
 rotation = 1.5708
-scale = Vector2(1, 9)
-
-[node name="Sprite2D" type="Sprite2D" parent="walls/top_wall"]
-texture = ExtResource("2_ypns4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/top_wall"]
-position = Vector2(-6.10352e-05, -3.8147e-06)
-rotation = 1.5708
-scale = Vector2(1, 9)
-shape = SubResource("RectangleShape2D_3qr0q")
+scale = Vector2(2, 18)
 
 [node name="bottom_wall" parent="walls" instance=ExtResource("1_xihky")]
-position = Vector2(0, 600)
+position = Vector2(0, 1200)
 rotation = 1.5708
-scale = Vector2(1, 9)
-
-[node name="Sprite2D" type="Sprite2D" parent="walls/bottom_wall"]
-texture = ExtResource("2_ypns4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/bottom_wall"]
-position = Vector2(0, -2.98023e-06)
-shape = SubResource("RectangleShape2D_ngbr5")
+scale = Vector2(2, 18)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.4, 0.4)
 
 [node name="player_paddle" parent="." instance=ExtResource("3_xa0gr")]
-position = Vector2(-1000, 0)
+position = Vector2(-1800, 0)
 gravity_scale = 0.0
 script = ExtResource("4_ns0vb")
 
-[node name="Sprite2D" type="Sprite2D" parent="player_paddle"]
-position = Vector2(-103, 15)
-texture = ExtResource("4_pbthd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player_paddle"]
-position = Vector2(-103, 15)
-shape = SubResource("RectangleShape2D_quwtw")
-
 [node name="enemy_paddle" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("3_xa0gr")]
-position = Vector2(1000, 0)
+position = Vector2(1800, 0)
 gravity_scale = 0.0
 script = ExtResource("6_enock")
 ball = NodePath("../ball")
 
-[node name="Sprite2D" type="Sprite2D" parent="enemy_paddle"]
-position = Vector2(-103, 15)
-texture = ExtResource("4_pbthd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_paddle"]
-position = Vector2(-103, 15)
-shape = SubResource("RectangleShape2D_quwtw")
-
 [node name="ball" parent="." instance=ExtResource("7_c8wfy")]
 script = ExtResource("8_2bsxx")
-
-[node name="Sprite2D" type="Sprite2D" parent="ball"]
-texture = ExtResource("8_p0n6p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
-shape = SubResource("RectangleShape2D_8227c")
+initial_speed = 50
 
 [node name="left_out_zone" parent="." instance=ExtResource("10_d3o00")]
-position = Vector2(-1180, -11)
-script = ExtResource("11_u4vgi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="left_out_zone"]
-position = Vector2(-6.10352e-05, 0)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_0were")
+position = Vector2(-2330, 74)
 
 [node name="right_out_zone" parent="." instance=ExtResource("10_d3o00")]
-position = Vector2(1180, -11)
-script = ExtResource("11_u4vgi")
+position = Vector2(2330, 74)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="right_out_zone"]
-shape = SubResource("RectangleShape2D_r1t5w")
-
-[connection signal="body_entered" from="left_out_zone" to="left_out_zone" method="_on_body_entered"]
 [connection signal="point_scored" from="left_out_zone" to="." method="_on_enemy_point_scored"]
-[connection signal="body_entered" from="right_out_zone" to="right_out_zone" method="_on_body_entered"]
 [connection signal="point_scored" from="right_out_zone" to="." method="_on_player_point_scored"]

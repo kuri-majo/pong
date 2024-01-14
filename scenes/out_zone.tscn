@@ -1,4 +1,16 @@
-[gd_scene format=3 uid="uid://cmsbr0sd3n8ta"]
+[gd_scene load_steps=3 format=3 uid="uid://cmsbr0sd3n8ta"]
+
+[ext_resource type="Script" path="res://scripts/out_zone.gd" id="1_lu3kf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8ioa"]
+size = Vector2(36.4286, 33.0179)
 
 [node name="out_zone" type="Area2D"]
 scale = Vector2(1.4, 70)
+script = ExtResource("1_lu3kf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.999999, 1)
+shape = SubResource("RectangleShape2D_l8ioa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
