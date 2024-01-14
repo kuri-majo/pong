@@ -1,3 +1,0 @@
-[gd_scene format=3 uid="uid://cirojjxcatqt6"]
-
-[node name="paddle" type="RigidBody2D"]
