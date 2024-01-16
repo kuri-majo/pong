@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8ji1j65nwsuy"]
+[gd_scene load_steps=11 format=3 uid="uid://b8ji1j65nwsuy"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_bson1"]
 [ext_resource type="PackedScene" uid="uid://xrpqt6mi21dn" path="res://scenes/wall.tscn" id="1_xihky"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/ball.gd" id="8_2bsxx"]
 [ext_resource type="Texture2D" uid="uid://bvkwxdl12182v" path="res://assets/line.png" id="9_7tywe"]
 [ext_resource type="PackedScene" uid="uid://cmsbr0sd3n8ta" path="res://scenes/out_zone.tscn" id="10_d3o00"]
+[ext_resource type="PackedScene" uid="uid://c2jllfue03nkn" path="res://scenes/ui.tscn" id="10_qp8fi"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_bson1")
@@ -56,6 +57,8 @@ points = PackedVector2Array(0, 0, 0, 2250)
 width = 32.0
 texture = ExtResource("9_7tywe")
 texture_mode = 1
+
+[node name="UI" parent="." instance=ExtResource("10_qp8fi")]
 
 [connection signal="point_scored" from="left_out_zone" to="." method="_on_enemy_point_scored"]
 [connection signal="point_scored" from="right_out_zone" to="." method="_on_player_point_scored"]
