@@ -3,6 +3,8 @@ extends Node2D
 var player_points = 0
 var enemy_points = 0
 
+signal pause_game
+
 @onready var player_paddle = $PlayerPaddle
 @onready var enemy_paddle = $EnemyPaddle
 @onready var ball = $Ball
@@ -48,3 +50,5 @@ func reset_game_state():
 	ball.global_position = Vector2.ZERO
 	ball.velocity = Vector2.ZERO
 	ball.start_ball()
+	pause_game.emit()
+	get_tree().paused = true

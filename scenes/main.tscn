@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8ji1j65nwsuy"]
+[gd_scene load_steps=12 format=3 uid="uid://b8ji1j65nwsuy"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_bson1"]
 [ext_resource type="PackedScene" uid="uid://xrpqt6mi21dn" path="res://scenes/wall.tscn" id="1_xihky"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bvkwxdl12182v" path="res://assets/line.png" id="9_7tywe"]
 [ext_resource type="PackedScene" uid="uid://c2jllfue03nkn" path="res://scenes/score_display.tscn" id="10_3urg8"]
 [ext_resource type="PackedScene" uid="uid://cmsbr0sd3n8ta" path="res://scenes/out_zone.tscn" id="10_d3o00"]
+[ext_resource type="PackedScene" uid="uid://xwxh1qoseyvy" path="res://scenes/pause_menu.tscn" id="11_pixuw"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bson1")
@@ -60,5 +61,8 @@ texture_mode = 1
 
 [node name="ScoreDisplay" parent="." instance=ExtResource("10_3urg8")]
 
+[node name="PauseMenu" parent="." instance=ExtResource("11_pixuw")]
+
+[connection signal="pause_game" from="." to="PauseMenu" method="_on_main_pause_game"]
 [connection signal="point_scored" from="LeftOutZone" to="." method="_on_enemy_point_scored"]
 [connection signal="point_scored" from="RightOutZone" to="." method="_on_player_point_scored"]
