@@ -13,6 +13,11 @@ func _ready():
 	new_game()
 
 
+func _process(_delta):
+	if Input.is_action_pressed("escape"):
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
 func new_game():
 	player_points = 0
 	enemy_points = 0
