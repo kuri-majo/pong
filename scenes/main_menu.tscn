@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://c14keohr14flj"]
+
+[ext_resource type="Theme" uid="uid://cf8gayl0o33b4" path="res://assets/themes/main_menu_theme.tres" id="1_k003t"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_mom58"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k003t")
+script = ExtResource("2_mom58")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0156863, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Pong"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="StartGameBotton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../ExitButton")
+theme_override_font_sizes/font_size = 20
+text = "Start Game"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../StartGameBotton")
+focus_neighbor_bottom = NodePath("../StartGameBotton")
+focus_next = NodePath("../StartGameBotton")
+focus_previous = NodePath("../StartGameBotton")
+theme_override_font_sizes/font_size = 20
+text = "Exit"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="MarginContainer/VBoxContainer/ButtonsVBox" to="." method="_on_buttons_v_box_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/StartGameBotton" to="." method="_on_start_game_botton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/ExitButton" to="." method="_on_exit_button_pressed"]
