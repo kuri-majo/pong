@@ -3,9 +3,9 @@ extends Node2D
 var player_points = 0
 var enemy_points = 0
 
-@onready var player_paddle = $player_paddle
-@onready var enemy_paddle = $enemy_paddle
-@onready var ball = $ball
+@onready var player_paddle = $PlayerPaddle
+@onready var enemy_paddle = $EnemyPaddle
+@onready var ball = $Ball
 @onready var ui = $UI
 
 func _on_enemy_point_scored():
