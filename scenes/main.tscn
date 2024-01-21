@@ -11,17 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://cmsbr0sd3n8ta" path="res://scenes/out_zone.tscn" id="10_d3o00"]
 [ext_resource type="PackedScene" uid="uid://c2jllfue03nkn" path="res://scenes/ui.tscn" id="10_qp8fi"]
 
-[node name="main" type="Node2D"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_bson1")
 
-[node name="walls" type="Node" parent="."]
+[node name="Walls" type="Node" parent="."]
 
-[node name="top_wall" parent="walls" instance=ExtResource("1_xihky")]
+[node name="TopWall" parent="Walls" instance=ExtResource("1_xihky")]
 position = Vector2(0, -1050)
 rotation = 1.5708
 scale = Vector2(2, 18)
 
-[node name="bottom_wall" parent="walls" instance=ExtResource("1_xihky")]
+[node name="BottomWall" parent="Walls" instance=ExtResource("1_xihky")]
 position = Vector2(0, 1200)
 rotation = 1.5708
 scale = Vector2(2, 18)
@@ -29,28 +29,28 @@ scale = Vector2(2, 18)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.4, 0.4)
 
-[node name="player_paddle" parent="." instance=ExtResource("3_xa0gr")]
+[node name="PlayerPaddle" parent="." instance=ExtResource("3_xa0gr")]
 position = Vector2(-1800, 0)
 gravity_scale = 0.0
 script = ExtResource("4_ns0vb")
 
-[node name="enemy_paddle" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("3_xa0gr")]
+[node name="EnemyPaddle" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("3_xa0gr")]
 position = Vector2(1800, 0)
 gravity_scale = 0.0
 script = ExtResource("6_enock")
-ball = NodePath("../ball")
+ball = NodePath("../Ball")
 
-[node name="ball" parent="." instance=ExtResource("7_c8wfy")]
+[node name="Ball" parent="." instance=ExtResource("7_c8wfy")]
 script = ExtResource("8_2bsxx")
 initial_speed = 50
 
-[node name="left_out_zone" parent="." instance=ExtResource("10_d3o00")]
+[node name="LeftOutZone" parent="." instance=ExtResource("10_d3o00")]
 position = Vector2(-2330, 74)
 
-[node name="right_out_zone" parent="." instance=ExtResource("10_d3o00")]
+[node name="RightOutZone" parent="." instance=ExtResource("10_d3o00")]
 position = Vector2(2330, 74)
 
-[node name="middle_line" type="Line2D" parent="."]
+[node name="MiddleLine" type="Line2D" parent="."]
 texture_repeat = 2
 position = Vector2(0, -1050)
 points = PackedVector2Array(0, 0, 0, 2250)
@@ -60,5 +60,5 @@ texture_mode = 1
 
 [node name="UI" parent="." instance=ExtResource("10_qp8fi")]
 
-[connection signal="point_scored" from="left_out_zone" to="." method="_on_enemy_point_scored"]
-[connection signal="point_scored" from="right_out_zone" to="." method="_on_player_point_scored"]
+[connection signal="point_scored" from="LeftOutZone" to="." method="_on_enemy_point_scored"]
+[connection signal="point_scored" from="RightOutZone" to="." method="_on_player_point_scored"]
