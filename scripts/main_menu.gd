@@ -8,6 +8,7 @@ func _ready():
 
 
 func _on_start_game_botton_pressed():
+	print_debug("start button pressed")
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
@@ -18,9 +19,9 @@ func _on_exit_button_pressed():
 func _on_visibility_changed():
 	focus_button()
 
+
 func focus_button():
 	if buttons_v_box:  # is there a reference to the buttons_v_box?
 		var button: Button = buttons_v_box.get_child(0)  # get first element
 		if button is Button:
 			button.grab_focus()
-			

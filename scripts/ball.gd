@@ -14,12 +14,9 @@ func _physics_process(delta):
 	var collision = move_and_collide(velocity * ball_speed * delta)
 	
 	if(collision):
-		print_debug(collision)
 		velocity = velocity.bounce(collision.get_normal()) * speed_multiplier
 		
 func start_ball():
 	randomize()  # sets up time-based seed
 	velocity.x = [-1, 1][randi() % 2] * initial_speed  # the_array[randi() % the_array.size()]
-	print_debug(velocity.x)
 	velocity.y = [-0.8, 0.8][randi() % 2] * initial_speed
-	print_debug(velocity.y)
